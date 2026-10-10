@@ -322,7 +322,12 @@ cinema_sales = (
 
 show_scope = (
     tables["shows"]
-    .merge(tables["cinemas"], on="cinema_id")
+    .merge(
+        tables["cinemas"][
+            ["cinema_id", "cinema_name", "city"]
+        ],
+        on="cinema_id"
+    )
     .merge(
         tables["movies"][
             ["movie_id", "movie_name", "industry"]
