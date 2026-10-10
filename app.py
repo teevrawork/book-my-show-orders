@@ -103,11 +103,6 @@ try:
 except (FileNotFoundError, ValueError, KeyError) as error:
     st.error(f"Unable to load datasets: {error}")
     st.stop()
-    
-st.write("DEBUG - Latest show in CSV:",
-         tables["shows"]["show_datetime"].max())
-st.write("DEBUG - Latest show after merge:",
-         all_orders["show_datetime"].max())
 
 
 st.title("🎟️ Book My Show Orders")
