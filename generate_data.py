@@ -48,20 +48,38 @@ customers = pd.DataFrame([
     for customer_id in range(1001, 1501)
 ], columns=["customer_id", "age_group", "city"])
 
-# 4. SHOWTIMES
+
+# 4. SHOWTIMES - HISTORICAL REPORTING PERIOD
 shows_data = []
-start_date = datetime(2026, 10, 10)
+
+start_date = datetime(2026, 9, 11)
+end_date = datetime(2026, 10, 10, 23, 59, 59)
+
+movies["release_date"] = pd.to_datetime(
+    movies["release_date"]
+)
 
 for show_id in range(3001, 3401):
     movie = movies.iloc[random.randrange(len(movies))]
     cinema = cinemas.iloc[random.randrange(len(cinemas))]
 
-    show_date = start_date + timedelta(
-        days=random.randint(0, 29)
+    earliest_date = max(
+        start_date,
+        movie["release_date"].to_pydatetime()
     )
 
-    show_datetime = show_date + timedelta(
-        hours=random.choice([10, 13, 16, 19, 22])
+    days_available = (
+        end_date.date() - earliest_date.date()
+    ).days
+
+    show_date = earliest_date + timedelta(
+        days=random.randint(0, days_available)
+    )
+
+    show_datetime = show_date.replace(
+        hour=random.choice([10, 13, 16, 19, 22]),
+        minute=0,
+        second=0
     )
 
     shows_data.append([
@@ -77,6 +95,7 @@ shows = pd.DataFrame(shows_data, columns=[
     "show_id", "movie_id", "cinema_id",
     "show_datetime", "ticket_price", "seat_capacity"
 ])
+
 
 # 5. ORDERS, TICKETS AND PAYMENTS
 orders_data = []
@@ -112,9 +131,10 @@ for order_id in range(5001, 9001):
     ticket_price = int(show["ticket_price"])
     amount = quantity * ticket_price
 
-    booking_date = show["show_datetime"] - timedelta(
-        days=random.randint(1, 10)
-    )
+   booking_date = show["show_datetime"] - timedelta(
+    days=random.randint(0, 7),
+    hours=random.randint(0, 12)
+)
 
     customer_id = random.choice(
         customers["customer_id"].tolist()
