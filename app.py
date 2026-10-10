@@ -10,23 +10,58 @@ st.set_page_config(
     layout="wide"
 )
 
+
 st.markdown("""
 <style>
 .stApp {
     background-color: #0b1220;
     color: #e5edf7;
 }
+
+/* KPI card background */
 [data-testid="stMetric"] {
-    background: #172338;
-    border: 1px solid #2c3e55;
-    padding: 15px;
-    border-radius: 12px;
+    background-color: #19263b;
+    border: 1px solid #334155;
+    padding: 18px;
+    border-radius: 14px;
 }
+
+/* KPI labels */
+[data-testid="stMetricLabel"] {
+    color: #cbd5e1 !important;
+}
+
+[data-testid="stMetricLabel"] p {
+    color: #cbd5e1 !important;
+}
+
+/* KPI numbers - bright cyan */
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] * {
+    color: #38bdf8 !important;
+    font-weight: 800 !important;
+}
+
+/* Revenue */
+div[data-testid="stMetric"]:has(
+    [data-testid="stMetricLabel"]
+    :is(p, div):first-child
+) {
+    border-color: #334155;
+}
+
+/* Main headings */
 h1, h2, h3 {
     color: #f8fafc !important;
 }
+
+/* Sidebar text */
+section[data-testid="stSidebar"] {
+    color: #0f172a;
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 DATA = Path(__file__).parent / "data"
 
