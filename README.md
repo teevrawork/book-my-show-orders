@@ -88,3 +88,6 @@ This project demonstrates:
 ---
 
 *Built as a hands-on Data Analytics and Business Intelligence portfolio project.*
+## 📸 Dashboard Preview
+
+![Book My Show Orders Dashboard](dashboard.png)
