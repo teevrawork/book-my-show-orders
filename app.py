@@ -277,6 +277,38 @@ if not confirmed.empty:
 else:
     st.info("No confirmed bookings for the selected filters.")
 
+# BUSINESS RECOMMENDATIONS
+st.subheader("🎯 Business Recommendations")
+
+if not confirmed.empty:
+    st.markdown(
+        f"**📍 City Strategy:** {top_city} leads confirmed "
+        f"revenue. Review demand and cinema capacity "
+        f"before considering additional showtimes."
+    )
+
+    st.markdown(
+        f"**🎬 Movie Strategy:** {top_movie} has the "
+        f"highest ticket sales. Evaluate its occupancy "
+        f"and show-level demand before expanding screenings."
+    )
+
+if len(filtered) > 0:
+    if len(cancelled) / len(filtered) >= 0.10:
+        st.markdown(
+            "**⚠️ Cancellation Strategy:** Investigate "
+            "cancellation patterns by city, movie, and "
+            "payment method to identify possible causes."
+        )
+    else:
+        st.markdown(
+            "**✅ Cancellation Strategy:** Cancellation "
+            "rates are below the illustrative 10% review "
+            "threshold. Continue monitoring trends."
+        )
+else:
+    st.info("No bookings available for recommendations.")
+
 # MOVIE PERFORMANCE
 st.subheader("🎬 Movie Performance")
 
