@@ -200,6 +200,33 @@ h.metric("Refunded Amount", f"₹{refunds:,.0f}")
 
 st.divider()
 
+# BUSINESS INSIGHTS
+st.subheader("💡 Business Insights")
+
+if not confirmed.empty:
+    city_revenue = (
+        confirmed.groupby("city")["order_amount"]
+        .sum()
+        .sort_values(ascending=False)
+    )
+
+    top_city = city_revenue.index[0]
+    top_city_revenue = city_revenue.iloc[0]
+
+    city_share = (
+        top_city_revenue / revenue * 100
+        if revenue > 0 else 0
+    )
+
+    st.success(
+        f"🏆 {top_city} is the top revenue-generating city, "
+        f"contributing ₹{top_city_revenue:,.0f} "
+        f"({city_share:.1f}% of confirmed revenue) "
+        f"for the selected filters."
+    )
+else:
+    st.info("No confirmed bookings for the selected filters.")
+
 # MOVIE PERFORMANCE
 st.subheader("🎬 Movie Performance")
 
