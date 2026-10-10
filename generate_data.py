@@ -128,13 +128,15 @@ for order_id in range(5001, 9001):
         weights=[92, 8]
     )[0]
 
+    
     ticket_price = int(show["ticket_price"])
     amount = quantity * ticket_price
 
-  booking_date = show["show_datetime"] - timedelta(
+    booking_date = show["show_datetime"] - timedelta(
         days=random.randint(0, 7),
         hours=random.randint(0, 12)
     )
+
 
     customer_id = random.choice(
         customers["customer_id"].tolist()
