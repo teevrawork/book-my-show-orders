@@ -65,7 +65,7 @@ section[data-testid="stSidebar"] {
 
 DATA = Path(__file__).parent / "data"
 
-@st.cache_data
+@st.cache_data(ttl=60)
 def load_data():
     names = [
         "movies", "cinemas", "customers",
