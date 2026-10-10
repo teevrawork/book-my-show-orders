@@ -240,6 +240,33 @@ if not confirmed.empty:
         if tickets_sold > 0 else 0
     )
 
+    # CANCELLATION ANALYSIS
+    total_orders = len(filtered)
+    cancelled_orders = len(cancelled)
+
+    cancellation_rate = (
+        cancelled_orders / total_orders * 100
+        if total_orders > 0 else 0
+    )
+
+    if cancellation_rate >= 10:
+        cancellation_message = (
+            "Cancellation rate is at or above the "
+            "10% review threshold."
+        )
+    else:
+        cancellation_message = (
+            "Cancellation rate is below the "
+            "10% review threshold."
+        )
+
+    st.warning(
+        f"📉 {cancelled_orders:,} out of "
+        f"{total_orders:,} orders were cancelled "
+        f"({cancellation_rate:.1f}%). "
+        f"{cancellation_message}"
+    )
+
     st.info(
         f"🎬 {top_movie} is the best-selling movie, "
         f"with {top_movie_tickets:,} tickets sold "
