@@ -224,6 +224,29 @@ if not confirmed.empty:
         f"({city_share:.1f}% of confirmed revenue) "
         f"for the selected filters."
     )
+    
+    # BEST-SELLING MOVIE INSIGHT
+    movie_tickets = (
+        confirmed.groupby("movie_name")["ticket_quantity"]
+        .sum()
+        .sort_values(ascending=False)
+    )
+
+    top_movie = movie_tickets.index[0]
+    top_movie_tickets = int(movie_tickets.iloc[0])
+
+    movie_share = (
+        top_movie_tickets / tickets_sold * 100
+        if tickets_sold > 0 else 0
+    )
+
+    st.info(
+        f"🎬 {top_movie} is the best-selling movie, "
+        f"with {top_movie_tickets:,} tickets sold "
+        f"({movie_share:.1f}% of total confirmed tickets) "
+        f"for the selected filters."
+    )
+
 else:
     st.info("No confirmed bookings for the selected filters.")
 
