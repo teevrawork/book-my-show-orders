@@ -3,6 +3,9 @@
 **An interactive movie ticket booking and revenue analytics project built with Python, Pandas, Plotly, and Streamlit.**
 
 🔗 **[Live Dashboard](https://book-my-show-orders.streamlit.app/)**
+## 📸 Dashboard Preview
+
+![Book My Show Orders Dashboard](dashboard.png)
 
 > This is an independent portfolio project using synthetic data. It is not affiliated with BookMyShow. Movie titles and release information are illustrative and should not be treated as verified release records.
 
@@ -88,6 +91,3 @@ This project demonstrates:
 ---
 
 *Built as a hands-on Data Analytics and Business Intelligence portfolio project.*
-## 📸 Dashboard Preview
-
-![Book My Show Orders Dashboard](dashboard.png)
